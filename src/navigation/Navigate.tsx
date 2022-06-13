@@ -1,11 +1,11 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import TabNavigation from './TabNavigation';
+import StackNavigation from './StackNavigation';
 
 const Navigate: React.FC = () => {
   return (
     <NavigationContainer>
-      <TabNavigation />
+      <StackNavigation />
     </NavigationContainer>
   );
 };
