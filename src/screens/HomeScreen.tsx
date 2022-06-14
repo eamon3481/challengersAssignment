@@ -1,6 +1,7 @@
-import {View, Text, Button} from 'react-native';
-import React from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import React from 'react';
+import {View, Text, Button} from 'react-native';
+
 import {StackNavigationType} from '../navigation/StackNavigation';
 type Props = {
   navigation: NativeStackNavigationProp<StackNavigationType>;
