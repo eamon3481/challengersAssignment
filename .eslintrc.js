@@ -12,7 +12,7 @@ module.exports = {
     'import/named': 'off',
     'import/namespace': 'off',
     'import/order': [
-      'error',
+      'warn',
       {
         groups: ['builtin', 'external', ['parent', 'sibling'], 'index'],
         alphabetize: {
