@@ -2,9 +2,8 @@ import {View, Text, Button} from 'react-native';
 import React from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {StackNavigationType} from '../navigation/StackNavigation';
-
 type Props = {
-  navigation: NativeStackNavigationProp<StackNavigationType, 'Home'>;
+  navigation: NativeStackNavigationProp<StackNavigationType>;
 };
 
 const HomeScreen: React.FC<Props> = ({navigation}) => {
