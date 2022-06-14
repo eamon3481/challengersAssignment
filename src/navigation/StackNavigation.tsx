@@ -12,8 +12,20 @@ const StackNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator<StackNavigationType>();
   return (
     <Stack.Navigator initialRouteName="Tab">
-      <Stack.Screen name="Tab" component={TabNavigation} />
-      <Stack.Screen name="Cart" component={CartScreen} />
+      <Stack.Screen
+        name="Tab"
+        component={TabNavigation}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          headerTitle: '장바구니',
+        }}
+      />
     </Stack.Navigator>
   );
 };
