@@ -1,5 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+
+import MainHeader from '../components/MainHeader';
 import CartScreen from '../screens/CartScreen';
 import TabNavigation from './TabNavigation';
 
@@ -16,7 +18,7 @@ const StackNavigation: React.FC = () => {
         name="Tab"
         component={TabNavigation}
         options={{
-          headerShown: false,
+          header: ({navigation}) => <MainHeader navigation={navigation} />,
         }}
       />
       <Stack.Screen

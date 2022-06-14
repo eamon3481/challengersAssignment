@@ -1,10 +1,10 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
+
 import Camera from '../assets/icons/CameraIcon';
 import HomeIcon from '../assets/icons/HomeIcon';
 import ChallengeCertificationScreen from '../screens/ChallengeCertificationScreen';
 import HomeScreen from '../screens/HomeScreen';
-// import { Container } from './styles';
 
 const TabNavigation: React.FC = () => {
   const Tab = createBottomTabNavigator();
@@ -14,6 +14,7 @@ const TabNavigation: React.FC = () => {
         name="홈"
         component={HomeScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({color}) => (
             <HomeIcon height={32} width={32} color={color} />
           ),
