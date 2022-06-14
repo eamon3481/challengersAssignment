@@ -3,6 +3,7 @@ import {Text, Image, View} from 'react-native';
 import styled from 'styled-components/native';
 
 import ChallengersLogo from '../assets/icons/ChallengersLogo';
+import Tag from './Tag';
 
 // type CategoryType = '운동' | '식습관' | '생활' | '정서' | '취미' | '환경';
 
@@ -57,15 +58,9 @@ const ChallengeItem: React.FC<responseOfficialType> = ({
         </View>
         <Text>{title}</Text>
         <ChallengeItemTagWrapper>
-          <ChallengeTag>
-            <ChallengeTagText>6일 뒤 시작</ChallengeTagText>
-          </ChallengeTag>
-          <ChallengeTag>
-            <ChallengeTagText>2주동안</ChallengeTagText>
-          </ChallengeTag>
-          <ChallengeTag>
-            <ChallengeTagText>2주동안</ChallengeTagText>
-          </ChallengeTag>
+          <Tag text="6일 간 진행" />
+          <Tag text="2주동안" />
+          <Tag text="2주동안" />
         </ChallengeItemTagWrapper>
       </ChallengeItemTextWrapper>
     </ChallengeItemWrapper>
@@ -73,16 +68,6 @@ const ChallengeItem: React.FC<responseOfficialType> = ({
 };
 
 export default ChallengeItem;
-const ChallengeTagText = styled.Text`
-  color: #333;
-`;
-const ChallengeTag = styled.View`
-  border-radius: 4px;
-  padding: 4px;
-  background-color: #e1e1e1;
-  align-self: center;
-  margin: 4px;
-`;
 
 const ChallengeItemWrapper = styled.View<{itemWidth: number}>`
   width: ${({itemWidth}) => itemWidth.toString() + 'px'};
