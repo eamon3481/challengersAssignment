@@ -1,46 +1,16 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import styled from 'styled-components/native';
 
-import ChallengersLogo from '../assets/icons/ChallengersLogo';
 import useGetFixedRatioImageHightByWidth from '../hooks/useGetFixedRatioImageHightByWidth';
+import {ChallengeItemType, CompanyType} from '../types/challengeItem';
 import {getChallengeDuringDateTag, getRegisterTag} from '../utils/Date';
+import ChallengeType from './ChallengeType';
 import Tag from './Tag';
 
-type CategoryType = '운동' | '식습관' | '생활' | '정서' | '취미' | '환경';
-type CompanyType = {
-  id: number;
-  name: string;
-};
-type ResponsePartnerType = {
-  type: 'partner';
-  company: CompanyType;
-  category: CategoryType;
-  registerCount: number;
-  registerEndDate: string;
-  registerStartDate: string;
-  endDate: string;
-  startDate: string;
-  title: string;
-  thumbnailImageUrl: string;
-  id: number;
-};
-export type ResponseOfficialType = {
-  type: 'official';
-  category: CategoryType;
-  registerCount: number;
-  registerEndDate: string;
-  registerStartDate: string;
-  endDate: string;
-  startDate: string;
-  title: string;
-  thumbnailImageUrl: string;
-  id: number;
-};
-
-export type ChallengeItemType = ResponseOfficialType | ResponsePartnerType;
-
-const ChallengeItem: React.FC<ChallengeItemType & {itemWidth: number}> = ({
+const ChallengeItem: React.FC<
+  ChallengeItemType & {company?: CompanyType; itemWidth: number}
+> = ({
   thumbnailImageUrl,
   title,
   itemWidth,
@@ -48,6 +18,8 @@ const ChallengeItem: React.FC<ChallengeItemType & {itemWidth: number}> = ({
   registerEndDate,
   startDate,
   endDate,
+  type,
+  company,
 }) => {
   const ImgHeight = useGetFixedRatioImageHightByWidth({
     imgUrl: thumbnailImageUrl,
@@ -71,9 +43,7 @@ const ChallengeItem: React.FC<ChallengeItemType & {itemWidth: number}> = ({
         resizeMode="contain"
       />
       <ChallengeItemTextWrapper>
-        <View>
-          <ChallengersLogo width={18} height={18} color={'gray'} />
-        </View>
+        <ChallengeType {...{type, company}} />
         <Text>{title}</Text>
         <ChallengeItemTagWrapper>
           <Tag text={registerTag} />
