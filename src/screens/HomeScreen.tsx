@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 import {FlatList, FlatListProps} from 'react-native';
 import styled from 'styled-components/native';
 
-import ChallengeItem from '../components/ChallengeItem';
+import ChallengeItem, {ChallengeItemType} from '../components/ChallengeItem';
 
-const mockData = {
+const mockData: ChallengeItemType = {
   category: '환경',
   endDate: '2022-06-19T23:59:59',
   id: 198575,
@@ -58,7 +58,7 @@ const HomeScreenWrapper = styled.View`
 `;
 
 const HomeFlatList = styled(
-  FlatList as new (props: FlatListProps<typeof mockData>) => FlatList<
+  FlatList as new (props: FlatListProps<ChallengeItemType>) => FlatList<
     typeof mockData
   >,
 )`

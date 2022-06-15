@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 
 import ChallengersLogo from '../assets/icons/ChallengersLogo';
 import useGetFixedRatioImageHightByWidth from '../hooks/useGetFixedRatioImageHightByWidth';
+import {getChallengeDuringDateTag, getRegisterTag} from '../utils/Date';
 import Tag from './Tag';
 
 type CategoryType = '운동' | '식습관' | '생활' | '정서' | '취미' | '환경';
@@ -43,11 +44,25 @@ const ChallengeItem: React.FC<ChallengeItemType & {itemWidth: number}> = ({
   thumbnailImageUrl,
   title,
   itemWidth,
+  registerStartDate,
+  registerEndDate,
+  startDate,
+  endDate,
 }) => {
   const ImgHeight = useGetFixedRatioImageHightByWidth({
     imgUrl: thumbnailImageUrl,
     width: itemWidth,
   });
+  const registerStartDateObj = new Date(registerStartDate);
+  const registerEndDateObj = new Date(registerEndDate);
+  const startDateObj = new Date(startDate);
+  const endDateObj = new Date(endDate);
+
+  const registerTag = getRegisterTag(registerStartDateObj, registerEndDateObj);
+  const challengeDuringTag = getChallengeDuringDateTag(
+    startDateObj,
+    endDateObj,
+  );
 
   return (
     <ChallengeItemWrapper itemWidth={itemWidth}>
@@ -61,9 +76,8 @@ const ChallengeItem: React.FC<ChallengeItemType & {itemWidth: number}> = ({
         </View>
         <Text>{title}</Text>
         <ChallengeItemTagWrapper>
-          <Tag text="6일 간 진행" />
-          <Tag text="2주동안" />
-          <Tag text="2주동안" />
+          <Tag text={registerTag} />
+          <Tag text={challengeDuringTag} />
         </ChallengeItemTagWrapper>
       </ChallengeItemTextWrapper>
     </ChallengeItemWrapper>
