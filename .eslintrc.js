@@ -11,6 +11,7 @@ module.exports = {
   rules: {
     'import/named': 'off',
     'import/namespace': 'off',
+    'import/no-unresolved': 'off',
     'import/order': [
       'warn',
       {
