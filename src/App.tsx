@@ -4,7 +4,13 @@ import {QueryClient, QueryClientProvider} from 'react-query';
 
 import Navigate from './navigation/Navigate';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
 
 const App: React.FC = () => {
   return (
