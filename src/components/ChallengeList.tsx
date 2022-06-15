@@ -5,15 +5,18 @@ import {useQuery} from 'react-query';
 import styled from 'styled-components/native';
 
 import {challengeAPI} from '../api';
-import {ChallengeItemType} from '../types/challengeItem';
+import {CategoryType, ChallengeItemType} from '../types/challengeItem';
 import ChallengeItem from './ChallengeItem';
 
-const ChallengeList: React.FC = () => {
+type Props = {
+  category?: CategoryType;
+};
+
+const ChallengeList: React.FC<Props> = ({category}) => {
   const [containerWidth, setContainerWidth] = useState(0);
 
   const gap = 12;
   const numColumns = 2;
-  const category = '';
 
   const {data} = useQuery(['challengeList', category], () =>
     challengeAPI.reqChallengeList(category),
@@ -23,6 +26,9 @@ const ChallengeList: React.FC = () => {
     <>
       {data && (
         <ChallengeFlatList
+          contentContainerStyle={{
+            justifyContent: 'space-between',
+          }}
           numColumns={numColumns}
           showsVerticalScrollIndicator={false}
           columnWrapperStyle={{
@@ -43,7 +49,7 @@ const ChallengeList: React.FC = () => {
     </>
   );
 };
-export default ChallengeList;
+export default React.memo(ChallengeList);
 
 const ChallengeFlatList = styled(
   FlatList as new (
@@ -51,5 +57,6 @@ const ChallengeFlatList = styled(
   ) => FlatList<ChallengeItemType>,
 )`
   flex: 1;
+  margin: 12px 24px;
   height: 100%;
 `;
