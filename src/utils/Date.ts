@@ -9,7 +9,6 @@ export const getDiffDate = (startDate: Date, endDate: Date) => {
 
   const diffDate = Math.floor(diffMs / DATE);
   const diffWeek = Math.floor(diffMs / WEEK);
-  console.log(diffDate, diffWeek);
   return {diffDate, diffWeek};
 };
 

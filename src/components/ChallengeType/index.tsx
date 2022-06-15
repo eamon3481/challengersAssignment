@@ -12,7 +12,6 @@ type Props = {
 const ChallengeType: React.FC<Props> = ({type, company}) => {
   const typeText =
     type === 'official' ? '공식 챌린지' : `${company?.name} X 첼린저스`;
-  console.log(typeText, type);
   return (
     <ChallengeTypeWrapper>
       <ChallengersLogo width={18} height={18} color={'gray'} />
