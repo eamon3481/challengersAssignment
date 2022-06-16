@@ -1,14 +1,18 @@
 import React, {useState} from 'react';
 import {FlatList, FlatListProps, Text} from 'react-native';
+import {useStore} from 'react-redux';
 import styled from 'styled-components/native';
 
 import useGetChallengeFilterByReduxStoreId from '../../hooks/useGetChallengeFilterByReduxStoreId';
+import {RootState} from '../../store';
 import {ChallengeItemType} from '../../types/challengeItem';
 import CartItem from './CartItem';
 
 const CartList: React.FC = () => {
   const [containerWidth, setContainerWidth] = useState(0);
   const cartItems = useGetChallengeFilterByReduxStoreId('cartItems');
+  const store = useStore<RootState>();
+  const {attendChallenges: attendChallengeIds} = store.getState();
 
   const emptyText = ' 장바구니에 담긴 챌린지가 없어요!';
   if (!cartItems || cartItems.length === 0) {
@@ -27,7 +31,11 @@ const CartList: React.FC = () => {
           data={cartItems}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
-            <CartItem itemWidth={containerWidth} {...item} />
+            <CartItem
+              itemWidth={containerWidth}
+              isAttend={attendChallengeIds.value.includes(item.id)}
+              {...item}
+            />
           )}
           keyExtractor={item => item.id.toString()}
         />

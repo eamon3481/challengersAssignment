@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {FlatList, FlatListProps, Text} from 'react-native';
 import styled from 'styled-components/native';
 
-import CartItem from '../components/Cart/CartItem';
+import CertificationItem from '../components/ChallengeCertification/CertificationItem';
 import useGetChallengeFilterByReduxStoreId from '../hooks/useGetChallengeFilterByReduxStoreId';
 import {ChallengeItemType} from '../types/challengeItem';
 
@@ -30,7 +30,7 @@ const ChallengeCertificationScreen: React.FC = () => {
           data={attendChallenges}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
-            <CartItem itemWidth={containerWidth} {...item} />
+            <CertificationItem itemWidth={containerWidth} {...item} />
           )}
           keyExtractor={item => item.id.toString()}
         />

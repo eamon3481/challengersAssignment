@@ -12,10 +12,11 @@ import JoinButton from '../common/JoinButton';
 const CartItem: React.FC<
   ChallengeItemType & {
     itemWidth: number;
+    isAttend: boolean;
   }
 > = props => {
   const dispatch = useDispatch();
-  const {itemWidth, id} = props;
+  const {itemWidth, id, isAttend} = props;
 
   const handleAddCartButton = () => {
     dispatch(removeCartItem(id));
@@ -30,7 +31,7 @@ const CartItem: React.FC<
       <ChallengeItem {...props} />
       <CartItemButtonWrapper>
         <AddCartButton onPress={handleAddCartButton} isCart={true} />
-        <JoinButton onPress={handleAttendButton} />
+        <JoinButton onPress={handleAttendButton} isAttend={isAttend} />
       </CartItemButtonWrapper>
     </CartItemWrapper>
   );
