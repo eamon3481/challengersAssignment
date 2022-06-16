@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 
 import useGetFixedRatioImageHightByWidth from '../hooks/useGetFixedRatioImageHightByWidth';
-import {addCartItem} from '../redux/cartItems';
+import {addCartItem, removeCartItem} from '../redux/cartItems';
 import {ChallengeItemType, CompanyType} from '../types/challengeItem';
 import {getChallengeDuringDateTag, getRegisterTag} from '../utils/Date';
 import AddCartButton from './AddCartButton';
@@ -12,7 +12,11 @@ import ChallengeType from './ChallengeType';
 import Tag from './Tag';
 
 const ChallengeItem: React.FC<
-  ChallengeItemType & {company?: CompanyType; itemWidth: number}
+  ChallengeItemType & {
+    company?: CompanyType;
+    itemWidth: number;
+    isCart: boolean;
+  }
 > = ({
   thumbnailImageUrl,
   title,
@@ -23,6 +27,7 @@ const ChallengeItem: React.FC<
   endDate,
   type,
   company,
+  isCart,
   id,
 }) => {
   const ImgHeight = useGetFixedRatioImageHightByWidth({
@@ -44,7 +49,12 @@ const ChallengeItem: React.FC<
   const dispatch = useDispatch();
 
   const handleAddCartButton = () => {
-    dispatch(addCartItem(id));
+    console.log(isCart);
+    if (isCart) {
+      dispatch(removeCartItem(id));
+    } else {
+      dispatch(addCartItem(id));
+    }
   };
   return (
     <ChallengeItemWrapper itemWidth={itemWidth}>
@@ -62,12 +72,12 @@ const ChallengeItem: React.FC<
           </ChallengeItemTagWrapper>
         </ChallengeItemTextWrapper>
       </View>
-      <AddCartButton onPress={handleAddCartButton} />
+      <AddCartButton onPress={handleAddCartButton} isCart={isCart} />
     </ChallengeItemWrapper>
   );
 };
 
-export default ChallengeItem;
+export default React.memo(ChallengeItem);
 
 const ChallengeItemWrapper = styled.View<{itemWidth: number}>`
   width: ${({itemWidth}) => itemWidth.toString() + 'px'};

@@ -3,9 +3,11 @@
 import React, {useState} from 'react';
 import {FlatList, FlatListProps} from 'react-native';
 import {useQuery} from 'react-query';
+import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 
 import {challengeAPI} from '../api';
+import {RootState} from '../store';
 import {CategoryType, ChallengeItemType} from '../types/challengeItem';
 import ChallengeItem from './ChallengeItem';
 
@@ -15,6 +17,9 @@ type Props = {
 
 const ChallengeList: React.FC<Props> = ({category}) => {
   const [containerWidth, setContainerWidth] = useState(0);
+  const cartList = useSelector<RootState, number[]>(
+    state => state.cartItems.value,
+  );
 
   const gap = 12;
   const numColumns = 2;
@@ -44,6 +49,7 @@ const ChallengeList: React.FC<Props> = ({category}) => {
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
             <ChallengeItem
+              isCart={cartList.includes(item.id)}
               itemWidth={(containerWidth - gap) / numColumns}
               {...item}
             />
