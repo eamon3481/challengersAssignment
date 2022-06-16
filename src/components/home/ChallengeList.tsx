@@ -3,11 +3,13 @@
 import React, {useState} from 'react';
 import {FlatList, FlatListProps} from 'react-native';
 import {useQuery} from 'react-query';
+import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 
-import {challengeAPI} from '../api';
-import {CategoryType, ChallengeItemType} from '../types/challengeItem';
-import ChallengeItem from './ChallengeItem';
+import {challengeAPI} from '../../api';
+import {RootState} from '../../store';
+import {CategoryType, ChallengeItemType} from '../../types/challengeItem';
+import HomeItem from './HomeItem';
 
 type Props = {
   category?: CategoryType;
@@ -15,12 +17,19 @@ type Props = {
 
 const ChallengeList: React.FC<Props> = ({category}) => {
   const [containerWidth, setContainerWidth] = useState(0);
+  const cartList = useSelector<RootState, number[]>(
+    state => state.cartItems.value,
+  );
 
   const gap = 12;
   const numColumns = 2;
 
-  const {data} = useQuery(['challengeList', category], () =>
-    challengeAPI.reqChallengeList(category),
+  const {data} = useQuery<ChallengeItemType[]>(
+    ['challengeList', category],
+    () =>
+      challengeAPI
+        .reqChallengeList(category)
+        .then(res => res.data.data.challenges),
   );
 
   return (
@@ -36,10 +45,11 @@ const ChallengeList: React.FC<Props> = ({category}) => {
             justifyContent: 'space-between',
             marginBottom: gap,
           }}
-          data={data.data.data.challenges}
+          data={data}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
-            <ChallengeItem
+            <HomeItem
+              isCart={cartList.includes(item.id)}
               itemWidth={(containerWidth - gap) / numColumns}
               {...item}
             />

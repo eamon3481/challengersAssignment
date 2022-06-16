@@ -1,12 +1,19 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import styled from 'styled-components/native';
+
+import CartList from '../components/Cart/CartList';
 
 const CartScreen: React.FC = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>카트</Text>
-    </View>
+    <CartScreenWrapper edges={['bottom', 'left', 'right']}>
+      <CartList />
+    </CartScreenWrapper>
   );
 };
 
 export default CartScreen;
+
+const CartScreenWrapper = styled(SafeAreaView)`
+  flex: 1;
+`;

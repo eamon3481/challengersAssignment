@@ -1,6 +1,6 @@
 import {CategoryType, ChallengeItemType} from '../types/challengeItem';
 import Request from './Request';
-type ChallengeResponse = {
+export type ChallengeResponse = {
   data: {
     challenges: ChallengeItemType[];
   };
