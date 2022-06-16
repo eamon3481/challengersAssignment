@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 
-import React, {useState} from 'react';
-import {FlatList, FlatListProps} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {FlatList, FlatListProps, ListRenderItem} from 'react-native';
 import {useQuery} from 'react-query';
 import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
@@ -32,6 +32,17 @@ const ChallengeList: React.FC<Props> = ({category}) => {
         .then(res => res.data.data.challenges),
   );
 
+  const renderItem: ListRenderItem<ChallengeItemType> = useCallback(
+    ({item}) => (
+      <HomeItem
+        isCart={cartList.includes(item.id)}
+        itemWidth={(containerWidth - gap) / numColumns}
+        {...item}
+      />
+    ),
+    [cartList, containerWidth],
+  );
+
   return (
     <>
       {data && (
@@ -47,13 +58,7 @@ const ChallengeList: React.FC<Props> = ({category}) => {
           }}
           data={data}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
-          renderItem={({item}) => (
-            <HomeItem
-              isCart={cartList.includes(item.id)}
-              itemWidth={(containerWidth - gap) / numColumns}
-              {...item}
-            />
-          )}
+          renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
         />
       )}

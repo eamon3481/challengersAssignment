@@ -16,6 +16,7 @@ const HomeItem: React.FC<
 > = props => {
   const dispatch = useDispatch();
   const {isCart, itemWidth, id, registerCount} = props;
+  console.log('render', id);
 
   const handleAddCartButton = () => {
     if (isCart) {
