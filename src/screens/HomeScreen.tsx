@@ -1,11 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Suspense, useState} from 'react';
-import {Text} from 'react-native';
 
 import ChallengeList from '../components/ChallengeList';
+import Loading from '../components/Loading';
 import Tab from '../components/Tab';
 import {CategoryType} from '../types/challengeItem';
-
 type TabKeyType = '전체' | CategoryType;
 const HomeScreen: React.FC = () => {
   const [activeTabKey, setActiveTabKey] = useState<TabKeyType>('전체');
@@ -29,7 +28,7 @@ const HomeScreen: React.FC = () => {
         key,
         buttonLabel: key,
         render: () => (
-          <Suspense fallback={<Text>로딩</Text>}>
+          <Suspense fallback={<Loading itemCount={6} />}>
             {key === '전체' ? (
               <ChallengeList />
             ) : (
