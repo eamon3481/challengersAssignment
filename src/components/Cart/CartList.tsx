@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 import {useGetQueryState} from '../../hooks/useQueryClientStore';
 import {RootState} from '../../store';
 import {ChallengeItemType} from '../../types/challengeItem';
-import ChallengeItem from '../ChallengeItem';
+import CartItem from './CartItem';
 
 const CartList: React.FC = () => {
   const [containerWidth, setContainerWidth] = useState(0);
@@ -39,8 +39,7 @@ const CartList: React.FC = () => {
           data={cartItems}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
-            <ChallengeItem
-              isCart={false}
+            <CartItem
               itemWidth={(containerWidth - gap) / numColumns}
               {...item}
             />

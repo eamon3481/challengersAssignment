@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Suspense, useState} from 'react';
 
-import ChallengeList from '../components/ChallengeList';
-import Loading from '../components/Loading';
-import Tab from '../components/Tab';
+import Loading from '../components/common/Loading';
+import Tab from '../components/common/Tab';
+import ChallengeList from '../components/home/ChallengeList';
 import {CategoryType} from '../types/challengeItem';
 type TabKeyType = '전체' | CategoryType;
 const HomeScreen: React.FC = () => {

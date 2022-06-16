@@ -6,10 +6,10 @@ import {useQuery} from 'react-query';
 import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 
-import {challengeAPI} from '../api';
-import {RootState} from '../store';
-import {CategoryType, ChallengeItemType} from '../types/challengeItem';
-import ChallengeItem from './ChallengeItem';
+import {challengeAPI} from '../../api';
+import {RootState} from '../../store';
+import {CategoryType, ChallengeItemType} from '../../types/challengeItem';
+import HomeItem from './HomeItem';
 
 type Props = {
   category?: CategoryType;
@@ -48,7 +48,7 @@ const ChallengeList: React.FC<Props> = ({category}) => {
           data={data}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
-            <ChallengeItem
+            <HomeItem
               isCart={cartList.includes(item.id)}
               itemWidth={(containerWidth - gap) / numColumns}
               {...item}

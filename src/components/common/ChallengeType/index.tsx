@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import ChallengersLogo from '../../assets/icons/ChallengersLogo';
-import {CompanyType} from '../../types/challengeItem';
+import ChallengersLogo from '../../../assets/icons/ChallengersLogo';
+import {CompanyType} from '../../../types/challengeItem';
 
 type Props = {
   type: 'partner' | 'official';
