@@ -1,16 +1,23 @@
-import React, {useState} from 'react';
-import {FlatList, FlatListProps, Text} from 'react-native';
+import React, {useCallback} from 'react';
+import {ListRenderItem, Text} from 'react-native';
 import styled from 'styled-components/native';
 
 import CertificationItem from '../components/ChallengeCertification/CertificationItem';
+import GridList from '../components/common/GridList';
 import useGetChallengeFilterByReduxStoreId from '../hooks/useGetChallengeFilterByReduxStoreId';
 import {ChallengeItemType} from '../types/challengeItem';
 
 const ChallengeCertificationScreen: React.FC = () => {
-  const [containerWidth, setContainerWidth] = useState(0);
-
   const attendChallenges =
     useGetChallengeFilterByReduxStoreId('attendChallenges');
+
+  const renderItem: (itemWidth: number) => ListRenderItem<ChallengeItemType> =
+    useCallback(
+      itemWidth =>
+        ({item}) =>
+          <CertificationItem itemWidth={itemWidth} {...item} />,
+      [],
+    );
 
   const emptyText = '참가 중인 챌린지가 없어요';
 
@@ -23,19 +30,11 @@ const ChallengeCertificationScreen: React.FC = () => {
   }
 
   return (
-    <>
-      {
-        <ChallengeFlatList
-          showsVerticalScrollIndicator={false}
-          data={attendChallenges}
-          onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
-          renderItem={({item}) => (
-            <CertificationItem itemWidth={containerWidth} {...item} />
-          )}
-          keyExtractor={item => item.id.toString()}
-        />
-      }
-    </>
+    <GridList<ChallengeItemType>
+      data={attendChallenges}
+      renderItem={renderItem}
+      numColumns={1}
+    />
   );
 };
 
@@ -43,16 +42,6 @@ const CartEmpty = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-`;
-
-const ChallengeFlatList = styled(
-  FlatList as new (
-    props: FlatListProps<ChallengeItemType>,
-  ) => FlatList<ChallengeItemType>,
-)`
-  flex: 1;
-  margin: 12px 24px;
-  height: 100%;
 `;
 
 export default ChallengeCertificationScreen;

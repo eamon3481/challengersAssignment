@@ -3,7 +3,7 @@ import React, {Suspense, useState} from 'react';
 
 import Loading from '../components/common/Loading';
 import Tab from '../components/common/Tab';
-import ChallengeList from '../components/home/ChallengeList';
+import ChallengeList from '../components/home/HomeChallengeList';
 import {CategoryType} from '../types/challengeItem';
 type TabKeyType = '전체' | CategoryType;
 const HomeScreen: React.FC = () => {
