@@ -1,7 +1,10 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import styled from 'styled-components/native';
 
+import ChallengeDetail from '../components/ChallengeDetail';
 import useGetDetailChallenge from '../hooks/useGetDetailChallenge';
 type ParamList = {
   prams: {
@@ -12,12 +15,18 @@ type ParamList = {
 const ChallengeDetailScreen = () => {
   const route = useRoute<RouteProp<ParamList, 'prams'>>();
   const data = useGetDetailChallenge(route.params.id);
-  console.log(data);
+  if (!data) {
+    return <Text />;
+  }
   return (
-    <View>
-      <Text>{'dd'}</Text>
-    </View>
+    <ChallengeDetailWrapper edges={['bottom', 'left', 'right']}>
+      <ChallengeDetail {...data} />
+    </ChallengeDetailWrapper>
   );
 };
 
 export default ChallengeDetailScreen;
+
+const ChallengeDetailWrapper = styled(SafeAreaView)`
+  flex: 1;
+`;

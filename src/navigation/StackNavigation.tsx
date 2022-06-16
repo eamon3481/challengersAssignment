@@ -16,12 +16,18 @@ const StackNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator<StackNavigationType>();
   return (
     <Stack.Navigator initialRouteName="Tab">
-      <Stack.Screen name="ChallengeDetail" component={ChallengeDetailScreen} />
       <Stack.Screen
         name="Tab"
         component={TabNavigation}
         options={{
           header: ({navigation}) => <MainHeader navigation={navigation} />,
+        }}
+      />
+      <Stack.Screen
+        name="ChallengeDetail"
+        component={ChallengeDetailScreen}
+        options={{
+          headerTitle: ' ',
         }}
       />
       <Stack.Screen
