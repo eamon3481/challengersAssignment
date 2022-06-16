@@ -2,6 +2,17 @@
 
 챌린저스 과제 전형
 
+### GettingStarted
+
+```
+//.env
+API_URL=""
+
+yarn run ios
+
+yarn run android
+```
+
 ### 활용 패키지
 
 - react-native
@@ -30,32 +41,29 @@
 ### API
 
 - 챌린지 목록 조회 API
+
   - Parameters
     - category(optional): 운동 | 식습관 | 생활 | 정서 | 취미 | 환경
     - offset(optional): 기본값 0
     - limit(optional): 기본값 20
+
   ```tsx
-  type response =
-    | {
-        type: 'partner';
-        company: {
-          id: number;
-          name: string;
-        };
-        category: '운동' | '식습관' | '생활' | '정서' | '취미' | '환경';
-        registerCount: numbe;
-        registerEndDate: string;
-        registerStartDate: string;
-        endDate: string;
-        startDate: string;
-      }
-    | {
-        type: 'official';
-        category: '운동' | '식습관' | '생활' | '정서' | '취미' | '환경';
-        registerCount: number;
-        registerEndDate: string;
-        registerStartDate: string;
-        endDate: string;
-        startDate: string;
-      };
+  type response = {
+    type: 'partner' | 'official';
+    company: {
+      id: number;
+      name: string;
+    };
+    category: '운동' | '식습관' | '생활' | '정서' | '취미' | '환경';
+    registerCount: number;
+    registerEndDate: string;
+    registerStartDate: string;
+    endDate: string;
+    startDate: string;
+    title: string;
+    thumbnailImageUrl: string;
+    id: number;
+  };
   ```
+
+[Troubleshooting](https://github.com/eamon3481/challengersAssignment/wiki/Troubleshooting)

@@ -6,9 +6,9 @@ import styled from 'styled-components/native';
 import {StackNavigationType} from '../../navigation/StackNavigation';
 import {addCartItem, removeCartItem} from '../../redux/cartItems';
 import {ChallengeItemType} from '../../types/challengeItem';
-import AddCartButton from '../common/AddCartButton';
 import ChallengeItem from '../common/ChallengeItem';
 import Tag from '../common/Tag';
+import AddCartButton from '../common/Tag/AddCartButton';
 
 const HomeItem: React.FC<
   ChallengeItemType & {

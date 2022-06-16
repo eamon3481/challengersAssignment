@@ -7,9 +7,9 @@ import useIsAttendAndCartChallenge from '../../hooks/useIsAttendAndCartChallenge
 import {addAttendChallenges} from '../../redux/attendChallenges';
 import {addCartItem, removeCartItem} from '../../redux/cartItems';
 import {ChallengeItemType} from '../../types/challengeItem';
-import AddCartButton from '../common/AddCartButton';
+import JoinButton from '../common/Buttons/JoinButton';
 import ChallengeType from '../common/ChallengeType';
-import JoinButton from '../common/JoinButton';
+import AddCartButton from '../common/Tag/AddCartButton';
 import TagsWrapper from '../common/Tag/TagsWrapper';
 import ChallengeDuringTime from './ChallengeDuringTime';
 
@@ -73,7 +73,7 @@ const ChallengeItemImage = styled.Image`
 
 const ChallengeItemTextWrapper = styled.View`
   margin-top: 32px;
-  padding: 8px;
+  padding: 0 18px;
 `;
 
 const ChallengeItemTex = styled.Text`
