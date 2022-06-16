@@ -1,5 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
+import {useTheme} from 'styled-components/native';
 
 import Camera from '../assets/icons/CameraIcon';
 import HomeIcon from '../assets/icons/HomeIcon';
@@ -8,6 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 
 const TabNavigation: React.FC = () => {
   const Tab = createBottomTabNavigator();
+  const theme = useTheme();
   return (
     <Tab.Navigator initialRouteName="홈">
       <Tab.Screen
@@ -15,6 +17,7 @@ const TabNavigation: React.FC = () => {
         component={HomeScreen}
         options={{
           headerShown: false,
+          tabBarActiveTintColor: theme.colors.RED,
           tabBarIcon: ({color}) => (
             <HomeIcon height={32} width={32} color={color} />
           ),
@@ -24,6 +27,7 @@ const TabNavigation: React.FC = () => {
         name="챌린지 인증"
         component={ChallengeCertificationScreen}
         options={{
+          tabBarActiveTintColor: theme.colors.RED,
           tabBarIcon: ({color}) => (
             <Camera height={32} width={32} color={color} />
           ),
