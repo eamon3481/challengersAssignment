@@ -16,12 +16,12 @@ const Tag: React.FC<Props> = ({text}) => {
 export default Tag;
 
 const ChallengeTagText = styled.Text`
-  color: #333;
+  color: ${({theme}) => theme.colors.BLACK};
 `;
 const ChallengeTag = styled.View`
   border-radius: 4px;
   padding: 4px;
-  background-color: #e1e1e1;
+  background-color: ${({theme}) => theme.colors.GRAY_LIGHT};
   align-self: center;
   margin: 4px;
 `;

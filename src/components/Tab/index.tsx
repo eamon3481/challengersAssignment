@@ -80,22 +80,23 @@ const BaseRender = styled.View`
 
 const ToggleTabBase = styled.ScrollView`
   flex-direction: row;
-  background-color: #e2e2e2;
+  background-color: ${({theme}) => theme.colors.GRAY_LIGHT};
   padding: 12px 24px;
   padding-right: 40px;
 `;
 
 const TabText = styled.Text<{isSelected: boolean}>`
   align-items: center;
-  color: ${({isSelected}) => (isSelected ? '#fff' : '#333')};
+  color: ${({theme, isSelected}) =>
+    isSelected ? theme.colors.WHITE : theme.colors.BLACK};
 `;
 const ToggleTab = styled.View<{isSelected: boolean}>`
   padding: 8px 16px;
   font-size: 16px;
   line-height: 150%;
   font-weight: ${({isSelected}) => (isSelected ? 900 : 400)};
-  background-color: ${({isSelected}) =>
-    isSelected ? '#FF3A3A' : 'transparent'};
+  background-color: ${({theme, isSelected}) =>
+    isSelected ? theme.colors.RED : 'transparent'};
   border-radius: 59px;
   align-items: center;
   justify-content: center;

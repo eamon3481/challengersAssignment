@@ -33,7 +33,7 @@ const ChallengeItemWrapper = styled.View<{itemWidth: number}>`
 const SkeletonText = styled.View<{width: string}>`
   border-radius: 10px;
   height: 10px;
-  background-color: gray;
+  background-color: ${({theme}) => theme.colors.GRAY};
   width: ${({width}) => width};
   margin: 4px 0;
   opacity: 0.5;
@@ -50,7 +50,7 @@ const SkeletonTag = styled.View<{width: string}>`
   padding: 4px;
   margin: 4px;
   height: 20px;
-  background-color: gray;
+  background-color: ${({theme}) => theme.colors.GRAY};
   opacity: 0.5;
   width: ${({width}) => width};
   margin: 4px 0;
@@ -59,7 +59,7 @@ const SkeletonTag = styled.View<{width: string}>`
 const ChallengeItemImage = styled.View`
   border-radius: 10px;
   height: 100px;
-  background-color: gray;
+  background-color: ${({theme}) => theme.colors.GRAY};
   opacity: 0.5;
 `;
 

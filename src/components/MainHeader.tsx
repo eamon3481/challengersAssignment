@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 
 import ChallengersLogo from '../assets/icons/ChallengersLogo';
 import ShoppingBasketIcon from '../assets/icons/ShoppingBasketIcon';
+import theme from '../themes';
 type Props = {
   navigation: NativeStackNavigationProp<ParamListBase, string, undefined>;
 };
@@ -18,7 +19,7 @@ const MainHeader: React.FC<Props> = ({navigation}) => {
     <SafeAreaView>
       <Header>
         <HeaderTextView>
-          <ChallengersLogo width={32} height={32} color="red" />
+          <ChallengersLogo width={32} height={32} color={theme.colors.RED} />
           <HeaderText>challengers</HeaderText>
         </HeaderTextView>
         <ShoppingBasketIcon
