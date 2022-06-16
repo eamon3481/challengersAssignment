@@ -1,17 +1,43 @@
-import {View, Text, Button} from 'react-native';
-import React from 'react';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {StackNavigationType} from '../navigation/StackNavigation';
-type Props = {
-  navigation: NativeStackNavigationProp<StackNavigationType>;
-};
+/* eslint-disable react-native/no-inline-styles */
+import React, {Suspense, useState} from 'react';
 
-const HomeScreen: React.FC<Props> = ({navigation}) => {
+import ChallengeList from '../components/ChallengeList';
+import Loading from '../components/Loading';
+import Tab from '../components/Tab';
+import {CategoryType} from '../types/challengeItem';
+type TabKeyType = '전체' | CategoryType;
+const HomeScreen: React.FC = () => {
+  const [activeTabKey, setActiveTabKey] = useState<TabKeyType>('전체');
+  const TabKeys: TabKeyType[] = [
+    '전체',
+    '운동',
+    '식습관',
+    '생활',
+    '정서',
+    '취미',
+    '환경',
+  ];
+  const handleTabChange = (key: TabKeyType) => {
+    setActiveTabKey(key);
+  };
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button title="Go to Cart" onPress={() => navigation.navigate('Cart')} />
-    </View>
+    <Tab
+      activeTabKey={activeTabKey}
+      onTabChange={handleTabChange}
+      tabs={TabKeys.map(key => ({
+        key,
+        buttonLabel: key,
+        render: () => (
+          <Suspense fallback={<Loading itemCount={6} />}>
+            {key === '전체' ? (
+              <ChallengeList />
+            ) : (
+              <ChallengeList category={key} />
+            )}
+          </Suspense>
+        ),
+      }))}
+    />
   );
 };
 
