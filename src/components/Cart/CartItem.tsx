@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 
+import {addAttendChallenges} from '../../redux/attendChallenges';
 import {removeCartItem} from '../../redux/cartItems';
 import {ChallengeItemType} from '../../types/challengeItem';
 import AddCartButton from '../common/AddCartButton';
@@ -19,12 +20,17 @@ const CartItem: React.FC<
   const handleAddCartButton = () => {
     dispatch(removeCartItem(id));
   };
+
+  const handleAttendButton = () => {
+    dispatch(addAttendChallenges(id));
+  };
+
   return (
     <CartItemWrapper itemWidth={itemWidth}>
       <ChallengeItem {...props} />
       <CartItemButtonWrapper>
         <AddCartButton onPress={handleAddCartButton} isCart={true} />
-        <JoinButton onPress={handleAddCartButton} />
+        <JoinButton onPress={handleAttendButton} />
       </CartItemButtonWrapper>
     </CartItemWrapper>
   );

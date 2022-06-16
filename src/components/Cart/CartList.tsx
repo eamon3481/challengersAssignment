@@ -1,30 +1,16 @@
 import React, {useState} from 'react';
 import {FlatList, FlatListProps, Text} from 'react-native';
-import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 
-import {useGetQueryState} from '../../hooks/useQueryClientStore';
-import {RootState} from '../../store';
+import useGetChallengeFilterByReduxStoreId from '../../hooks/useGetChallengeFilterByReduxStoreId';
 import {ChallengeItemType} from '../../types/challengeItem';
-import {trim} from '../../utils/type';
 import CartItem from './CartItem';
 
 const CartList: React.FC = () => {
   const [containerWidth, setContainerWidth] = useState(0);
-  const emptyText = ' 장바구니에 담긴 챌린지가 없어요!';
-  const challengeList = useGetQueryState<ChallengeItemType[]>([
-    'challengeList',
-    undefined,
-  ]);
+  const cartItems = useGetChallengeFilterByReduxStoreId('cartItems');
 
-  const cartItems = useSelector<RootState, ChallengeItemType[] | undefined>(
-    state =>
-      challengeList
-        ? state.cartItems.value
-            .map(id => challengeList.find(item => item.id === id))
-            .filter(trim)
-        : undefined,
-  );
+  const emptyText = ' 장바구니에 담긴 챌린지가 없어요!';
   if (!cartItems || cartItems.length === 0) {
     return (
       <CartEmpty>
