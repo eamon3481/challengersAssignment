@@ -1,8 +1,10 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 
 import useGetFixedRatioImageHightByWidth from '../hooks/useGetFixedRatioImageHightByWidth';
+import {addCartItem} from '../redux/cartItems';
 import {ChallengeItemType, CompanyType} from '../types/challengeItem';
 import {getChallengeDuringDateTag, getRegisterTag} from '../utils/Date';
 import AddCartButton from './AddCartButton';
@@ -21,11 +23,13 @@ const ChallengeItem: React.FC<
   endDate,
   type,
   company,
+  id,
 }) => {
   const ImgHeight = useGetFixedRatioImageHightByWidth({
     imgUrl: thumbnailImageUrl,
     width: itemWidth,
   });
+
   const registerStartDateObj = new Date(registerStartDate);
   const registerEndDateObj = new Date(registerEndDate);
   const startDateObj = new Date(startDate);
@@ -37,6 +41,11 @@ const ChallengeItem: React.FC<
     endDateObj,
   );
 
+  const dispatch = useDispatch();
+
+  const handleAddCartButton = () => {
+    dispatch(addCartItem(id));
+  };
   return (
     <ChallengeItemWrapper itemWidth={itemWidth}>
       <View>
@@ -53,7 +62,7 @@ const ChallengeItem: React.FC<
           </ChallengeItemTagWrapper>
         </ChallengeItemTextWrapper>
       </View>
-      <AddCartButton />
+      <AddCartButton onPress={handleAddCartButton} />
     </ChallengeItemWrapper>
   );
 };

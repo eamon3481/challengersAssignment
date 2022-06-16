@@ -1,12 +1,17 @@
 import React from 'react';
+import {GestureResponderEvent} from 'react-native';
 import styled, {useTheme} from 'styled-components/native';
 
 import ShoppingBasketIcon from '../assets/icons/ShoppingBasketIcon';
 
-const AddCartButton = () => {
+type Props = {
+  onPress: (event: GestureResponderEvent) => void;
+};
+
+const AddCartButton: React.FC<Props> = ({onPress}) => {
   const themes = useTheme();
   return (
-    <ChallengeItemCartButton>
+    <ChallengeItemCartButton onPress={onPress}>
       <ShoppingBasketIcon width={18} height={18} color={themes.colors.WHITE} />
       <ChallengeItemCartButtonText>장바구니 담기</ChallengeItemCartButtonText>
     </ChallengeItemCartButton>

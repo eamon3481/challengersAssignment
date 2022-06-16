@@ -19,8 +19,12 @@ const ChallengeList: React.FC<Props> = ({category}) => {
   const gap = 12;
   const numColumns = 2;
 
-  const {data} = useQuery(['challengeList', category], () =>
-    challengeAPI.reqChallengeList(category),
+  const {data} = useQuery<ChallengeItemType[]>(
+    ['challengeList', category],
+    () =>
+      challengeAPI
+        .reqChallengeList(category)
+        .then(res => res.data.data.challenges),
   );
 
   return (
@@ -36,7 +40,7 @@ const ChallengeList: React.FC<Props> = ({category}) => {
             justifyContent: 'space-between',
             marginBottom: gap,
           }}
-          data={data.data.data.challenges}
+          data={data}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
             <ChallengeItem
