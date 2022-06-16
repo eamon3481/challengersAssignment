@@ -1,13 +1,8 @@
-import {
-  NavigationProp,
-  RouteProp,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {View, Text} from 'react-native';
 
-import {StackNavigationType} from '../navigation/StackNavigation';
+import useGetDetailChallenge from '../hooks/useGetDetailChallenge';
 type ParamList = {
   prams: {
     id: number;
@@ -16,11 +11,11 @@ type ParamList = {
 
 const ChallengeDetailScreen = () => {
   const route = useRoute<RouteProp<ParamList, 'prams'>>();
-  const navigation = useNavigation<NavigationProp<StackNavigationType>>();
-  console.log(route.params.id);
+  const data = useGetDetailChallenge(route.params.id);
+  console.log(data);
   return (
     <View>
-      <Text>{navigation.getId()}</Text>
+      <Text>{'dd'}</Text>
     </View>
   );
 };
