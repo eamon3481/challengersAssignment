@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import styled from 'styled-components/native';
 
 import useGetFixedRatioImageHightByWidth from '../hooks/useGetFixedRatioImageHightByWidth';
 import {ChallengeItemType, CompanyType} from '../types/challengeItem';
 import {getChallengeDuringDateTag, getRegisterTag} from '../utils/Date';
+import AddCartButton from './AddCartButton';
 import ChallengeType from './ChallengeType';
 import Tag from './Tag';
 
@@ -38,18 +39,21 @@ const ChallengeItem: React.FC<
 
   return (
     <ChallengeItemWrapper itemWidth={itemWidth}>
-      <ChallengeItemImage
-        source={{uri: thumbnailImageUrl, height: ImgHeight}}
-        resizeMode="contain"
-      />
-      <ChallengeItemTextWrapper>
-        <ChallengeType {...{type, company}} />
-        <Text>{title}</Text>
-        <ChallengeItemTagWrapper>
-          <Tag text={registerTag} />
-          <Tag text={challengeDuringTag} />
-        </ChallengeItemTagWrapper>
-      </ChallengeItemTextWrapper>
+      <View>
+        <ChallengeItemImage
+          source={{uri: thumbnailImageUrl, height: ImgHeight}}
+          resizeMode="contain"
+        />
+        <ChallengeItemTextWrapper>
+          <ChallengeType {...{type, company}} />
+          <Text>{title}</Text>
+          <ChallengeItemTagWrapper>
+            <Tag text={registerTag} />
+            <Tag text={challengeDuringTag} />
+          </ChallengeItemTagWrapper>
+        </ChallengeItemTextWrapper>
+      </View>
+      <AddCartButton />
     </ChallengeItemWrapper>
   );
 };
@@ -58,6 +62,7 @@ export default ChallengeItem;
 
 const ChallengeItemWrapper = styled.View<{itemWidth: number}>`
   width: ${({itemWidth}) => itemWidth.toString() + 'px'};
+  justify-content: space-between;
 `;
 
 const ChallengeItemImage = styled.Image`
