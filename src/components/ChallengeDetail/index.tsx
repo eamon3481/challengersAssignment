@@ -3,14 +3,15 @@ import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 
-import useIsAttendAndCartChallenge from '../hooks/useIsAttendAndCartChallenge';
-import {addAttendChallenges} from '../redux/attendChallenges';
-import {addCartItem, removeCartItem} from '../redux/cartItems';
-import {ChallengeItemType} from '../types/challengeItem';
-import AddCartButton from './common/AddCartButton';
-import ChallengeType from './common/ChallengeType';
-import JoinButton from './common/JoinButton';
-import TagsWrapper from './common/Tag/TagsWrapper';
+import useIsAttendAndCartChallenge from '../../hooks/useIsAttendAndCartChallenge';
+import {addAttendChallenges} from '../../redux/attendChallenges';
+import {addCartItem, removeCartItem} from '../../redux/cartItems';
+import {ChallengeItemType} from '../../types/challengeItem';
+import AddCartButton from '../common/AddCartButton';
+import ChallengeType from '../common/ChallengeType';
+import JoinButton from '../common/JoinButton';
+import TagsWrapper from '../common/Tag/TagsWrapper';
+import ChallengeDuringTime from './ChallengeDuringTime';
 
 const ChallengeDetail: React.FC<ChallengeItemType> = ({
   thumbnailImageUrl,
@@ -48,6 +49,7 @@ const ChallengeDetail: React.FC<ChallengeItemType> = ({
           <TagsWrapper
             {...{registerEndDate, registerStartDate, endDate, startDate}}
           />
+          <ChallengeDuringTime startDate={startDate} endDate={endDate} />
         </ChallengeItemTextWrapper>
       </View>
       <CartItemButtonWrapper>
