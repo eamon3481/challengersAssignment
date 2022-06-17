@@ -7,9 +7,9 @@ import useIsAttendAndCartChallenge from '../../hooks/useIsAttendAndCartChallenge
 import {addAttendChallenges} from '../../redux/attendChallenges';
 import {addCartItem, removeCartItem} from '../../redux/cartItems';
 import {ChallengeItemType} from '../../types/challengeItem';
+import AddCartButton from '../common/Buttons/AddCartButton';
 import JoinButton from '../common/Buttons/JoinButton';
 import ChallengeType from '../common/ChallengeType';
-import AddCartButton from '../common/Tag/AddCartButton';
 import TagsWrapper from '../common/Tag/TagsWrapper';
 import ChallengeDuringTime from './ChallengeDuringTime';
 

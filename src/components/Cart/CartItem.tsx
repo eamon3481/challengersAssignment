@@ -5,9 +5,9 @@ import styled from 'styled-components/native';
 import {addAttendChallenges} from '../../redux/attendChallenges';
 import {removeCartItem} from '../../redux/cartItems';
 import {ChallengeItemType} from '../../types/challengeItem';
+import AddCartButton from '../common/Buttons/AddCartButton';
 import JoinButton from '../common/Buttons/JoinButton';
 import ChallengeItem from '../common/ChallengeItem';
-import AddCartButton from '../common/Tag/AddCartButton';
 
 const CartItem: React.FC<
   ChallengeItemType & {
