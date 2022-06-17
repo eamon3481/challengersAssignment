@@ -1,27 +1,24 @@
 import React, {useCallback} from 'react';
 import {ListRenderItem, Text} from 'react-native';
+import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 
 import CertificationItem from '../components/ChallengeCertification/CertificationItem';
 import GridList from '../components/common/GridList';
-import useGetChallengeFilterByReduxStoreId from '../hooks/useGetChallengeFilterByReduxStoreId';
-import {ChallengeItemType} from '../types/challengeItem';
+import {RootState} from '../store';
 
 const ChallengeCertificationScreen: React.FC = () => {
-  const attendChallenges =
-    useGetChallengeFilterByReduxStoreId('attendChallenges');
-
-  const renderItem: (itemWidth: number) => ListRenderItem<ChallengeItemType> =
-    useCallback(
-      itemWidth =>
-        ({item}) =>
-          <CertificationItem itemWidth={itemWidth} {...item} />,
-      [],
-    );
+  const {attendChallenges} = useSelector<RootState, RootState>(state => state);
+  const renderItem: (itemWidth: number) => ListRenderItem<number> = useCallback(
+    itemWidth =>
+      ({item}) =>
+        <CertificationItem itemWidth={itemWidth} id={item} />,
+    [],
+  );
 
   const emptyText = '참가 중인 챌린지가 없어요';
 
-  if (!attendChallenges || attendChallenges.length === 0) {
+  if (!attendChallenges.value || attendChallenges.value.length === 0) {
     return (
       <CartEmpty>
         <Text>{emptyText}</Text>
@@ -30,10 +27,11 @@ const ChallengeCertificationScreen: React.FC = () => {
   }
 
   return (
-    <GridList<ChallengeItemType>
-      data={attendChallenges}
+    <GridList<number>
+      data={attendChallenges.value}
       renderItem={renderItem}
       numColumns={1}
+      keyExtractor={item => item.toString()}
     />
   );
 };

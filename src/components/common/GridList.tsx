@@ -12,6 +12,7 @@ type Props<T> = {
   renderItem: (itemWidth: number) => ListRenderItem<T>;
   data: T[];
   numColumns: number;
+  keyExtractor: (item: T) => string;
   gap?: number;
 };
 
@@ -21,11 +22,12 @@ export interface LayoutChangeEvent {
   };
 }
 
-function GridList<H extends {id: number}>({
+function GridList<H>({
   data,
   gap = 0,
   numColumns,
   renderItem,
+  keyExtractor,
 }: Props<H>) {
   const [containerWidth, setContainerWidth] = useState(0);
   const itemWidth = (containerWidth - gap) / numColumns;
@@ -60,7 +62,7 @@ function GridList<H extends {id: number}>({
             setContainerWidth(e.nativeEvent.layout.width)
           }
           renderItem={renderItem(itemWidth)}
-          keyExtractor={(item: {id: number}) => item.id.toString()}
+          keyExtractor={keyExtractor}
         />
       )}
     </>

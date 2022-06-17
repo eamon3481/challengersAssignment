@@ -2,26 +2,26 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 
+import useGetDetailChallenge from '../../hooks/useGetDetailChallenge';
 import {removeAttendChallenge} from '../../redux/attendChallenges';
-import {ChallengeItemType} from '../../types/challengeItem';
 import ChallengeItem from '../common/ChallengeItem';
 import CancelButton from './CancelButton';
 
-const CertificationItem: React.FC<
-  ChallengeItemType & {
-    itemWidth: number;
-  }
-> = props => {
+const CertificationItem: React.FC<{
+  itemWidth: number;
+  id: number;
+}> = ({itemWidth, id}) => {
   const dispatch = useDispatch();
-  const {itemWidth, id} = props;
-
+  const data = useGetDetailChallenge(id);
   const handleCancelButton = () => {
     dispatch(removeAttendChallenge(id));
   };
-
+  if (!data) {
+    return null;
+  }
   return (
     <CertificationItemWrapper itemWidth={itemWidth}>
-      <ChallengeItem {...props} />
+      <ChallengeItem itemWidth={itemWidth} {...data} />
       <CertificationItemButtonWrapper>
         <CancelButton onPress={handleCancelButton} />
       </CertificationItemButtonWrapper>

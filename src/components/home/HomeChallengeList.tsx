@@ -41,6 +41,7 @@ const HomeChallengeList: React.FC<Props> = ({category}) => {
           gap={12}
           numColumns={2}
           data={data}
+          keyExtractor={item => item.id.toString()}
         />
       )}
     </>
