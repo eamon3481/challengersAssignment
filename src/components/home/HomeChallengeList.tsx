@@ -1,9 +1,8 @@
 import React, {useCallback} from 'react';
 import {ListRenderItem} from 'react-native';
-import {useQuery} from 'react-query';
 import {useSelector} from 'react-redux';
 
-import {challengeAPI} from '../../api';
+import useQueryReduxStore from '../../hooks/useQueryReduxStore';
 import {RootState} from '../../store';
 import {CategoryType, ChallengeItemType} from '../../types/challengeItem';
 import GridList from '../common/GridList';
@@ -18,13 +17,7 @@ const HomeChallengeList: React.FC<Props> = ({category}) => {
     state => state.cartItems.value,
   );
 
-  const {data} = useQuery<ChallengeItemType[]>(
-    ['challengeList', category],
-    () =>
-      challengeAPI
-        .reqChallengeList(category)
-        .then(res => res.data.data.challenges),
-  );
+  const data = useQueryReduxStore(category);
 
   const renderItem: (itemWidth: number) => ListRenderItem<ChallengeItemType> =
     useCallback(

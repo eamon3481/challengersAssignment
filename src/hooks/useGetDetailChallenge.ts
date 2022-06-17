@@ -1,15 +1,15 @@
+import {useStore} from 'react-redux';
+
+import {RootState} from '../store';
 import {ChallengeItemType} from '../types/challengeItem';
-import {useGetQueryState} from './useQueryClientStore';
 
 const useGetDetailChallenge = (
   challengeId: number,
 ): ChallengeItemType | undefined => {
-  const challengeList = useGetQueryState<ChallengeItemType[]>([
-    'challengeList',
-    undefined,
-  ]);
+  const store = useStore<RootState>();
+  const {challenges} = store.getState();
 
-  return challengeList && challengeList.find(({id}) => id === challengeId);
+  return challenges.value[challengeId];
 };
 
 export default useGetDetailChallenge;
