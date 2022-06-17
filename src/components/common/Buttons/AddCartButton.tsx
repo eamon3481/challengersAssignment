@@ -2,7 +2,7 @@ import React from 'react';
 import {GestureResponderEvent} from 'react-native';
 import styled, {useTheme} from 'styled-components/native';
 
-import ShoppingBasketIcon from '../../assets/icons/ShoppingBasketIcon';
+import ShoppingBasketIcon from '../../../assets/icons/ShoppingBasketIcon';
 
 type Props = {
   onPress: (event: GestureResponderEvent) => void;

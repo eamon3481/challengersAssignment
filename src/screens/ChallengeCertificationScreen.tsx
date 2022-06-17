@@ -1,12 +1,47 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, {useCallback} from 'react';
+import {ListRenderItem, Text} from 'react-native';
+import styled from 'styled-components/native';
+
+import CertificationItem from '../components/ChallengeCertification/CertificationItem';
+import GridList from '../components/common/GridList';
+import useGetChallengeFilterByReduxStoreId from '../hooks/useGetChallengeFilterByReduxStoreId';
+import {ChallengeItemType} from '../types/challengeItem';
 
 const ChallengeCertificationScreen: React.FC = () => {
+  const attendChallenges =
+    useGetChallengeFilterByReduxStoreId('attendChallenges');
+
+  const renderItem: (itemWidth: number) => ListRenderItem<ChallengeItemType> =
+    useCallback(
+      itemWidth =>
+        ({item}) =>
+          <CertificationItem itemWidth={itemWidth} {...item} />,
+      [],
+    );
+
+  const emptyText = '참가 중인 챌린지가 없어요';
+
+  if (!attendChallenges || attendChallenges.length === 0) {
+    return (
+      <CartEmpty>
+        <Text>{emptyText}</Text>
+      </CartEmpty>
+    );
+  }
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>챌린지 인증</Text>
-    </View>
+    <GridList<ChallengeItemType>
+      data={attendChallenges}
+      renderItem={renderItem}
+      numColumns={1}
+    />
   );
 };
+
+const CartEmpty = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default ChallengeCertificationScreen;

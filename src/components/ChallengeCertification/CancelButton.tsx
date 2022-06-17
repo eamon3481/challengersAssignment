@@ -6,20 +6,21 @@ type Props = {
   onPress: (event: GestureResponderEvent) => void;
 };
 
-const JoinButton: React.FC<Props> = ({onPress}) => {
+const CancelButton: React.FC<Props> = ({onPress}) => {
   return (
-    <JoinButtonWrapper {...{onPress}}>
-      <JoinButtonText>챌린지 참가하기</JoinButtonText>
-    </JoinButtonWrapper>
+    <CancelButtonWrapper {...{onPress}}>
+      <CancelButtonText>취소</CancelButtonText>
+    </CancelButtonWrapper>
   );
 };
 
-export default JoinButton;
+export default CancelButton;
 
-const JoinButtonWrapper = styled.TouchableOpacity`
+const CancelButtonWrapper = styled.TouchableOpacity`
   border-radius: 4px;
   padding: 8px 12px;
-  background-color: ${({theme}) => theme.colors.RED};
+  flex: 1;
+  background-color: transparent;
   border: 1px solid ${({theme}) => theme.colors.RED};
   align-self: center;
   margin: 0 0 16px 0;
@@ -27,7 +28,7 @@ const JoinButtonWrapper = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;
-const JoinButtonText = styled.Text`
+const CancelButtonText = styled.Text`
   margin-left: 8px;
-  color: ${({theme}) => theme.colors.WHITE};
+  color: ${({theme}) => theme.colors.RED};
 `;
