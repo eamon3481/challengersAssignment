@@ -63,12 +63,12 @@ const ChallengeDetail: React.FC<ChallengeItemType> = ({
 export default React.memo(ChallengeDetail);
 
 const ChallengeItemWrapper = styled.View`
-  height: 100%;
+  flex: 1;
   justify-content: space-between;
 `;
 
 const ChallengeItemImage = styled.Image`
-  height: 50%;
+  height: 40%;
 `;
 
 const ChallengeItemTextWrapper = styled.View`

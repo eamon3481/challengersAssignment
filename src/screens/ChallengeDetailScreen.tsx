@@ -29,4 +29,5 @@ export default ChallengeDetailScreen;
 
 const ChallengeDetailWrapper = styled(SafeAreaView)`
   flex: 1;
+  height: 100%;
 `;
