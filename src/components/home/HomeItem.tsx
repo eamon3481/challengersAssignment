@@ -27,6 +27,7 @@ const HomeItem: React.FC<
       dispatch(addCartItem(id));
     }
   };
+
   return (
     <ChallengeItemWrapper
       onPress={() =>

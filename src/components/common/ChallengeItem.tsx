@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {Image} from 'react-native';
 import styled from 'styled-components/native';
 
 import useGetFixedRatioImageHightByWidth from '../../hooks/useGetFixedRatioImageHightByWidth';
@@ -24,6 +25,11 @@ const ChallengeItem: React.FC<
     imgUrl: thumbnailImageUrl,
     width: itemWidth,
   });
+
+  useEffect(() => {
+    Image.prefetch(thumbnailImageUrl);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ChallengeItemWrapper>
