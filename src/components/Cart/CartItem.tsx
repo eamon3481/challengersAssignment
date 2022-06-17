@@ -19,14 +19,12 @@ const CartItem: React.FC<{
   const data = useGetDetailChallenge(id);
 
   const handleAddCartButton = () => {
-    console.log(id, 'dispath');
     dispatch(removeCartItem(id));
   };
 
   const handleAttendButton = () => {
     dispatch(addAttendChallenges(id));
   };
-  console.log(data);
   if (!data) {
     return null;
   }

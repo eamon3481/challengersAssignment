@@ -34,7 +34,6 @@ const CartList: React.FC = () => {
       </CartEmpty>
     );
   }
-  console.log(cartItems.value);
   return (
     <GridList<number>
       data={cartItems.value}
