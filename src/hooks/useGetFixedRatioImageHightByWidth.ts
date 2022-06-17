@@ -8,9 +8,15 @@ type Props = {
 
 const useGetFixedRatioImageHightByWidth = ({imgUrl, width}: Props) => {
   const [height, setHeight] = useState(0);
-  Image.getSize(imgUrl, (w, h) => {
-    setHeight(h * (width / w));
-  });
+  Image.getSize(
+    imgUrl,
+    (w, h) => {
+      setHeight(h * (width / w));
+    },
+    () => {
+      setHeight(150);
+    },
+  );
 
   return height;
 };
